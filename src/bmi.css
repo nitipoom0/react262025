@@ -1,0 +1,190 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #f0f4f8, #c8d8e8); /* Soft gradient background */
+    color: #333;
+}
+
+.bmi-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Title Styling */
+.app-title {
+    color: #4a90e2; /* Blue color for title */
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Input Group Styles */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f7f9fc;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.input-group label {
+    flex-basis: 80px; /* Fixed width for labels */
+    text-align: left;
+    font-weight: 600;
+    color: #555;
+    font-size: 1.1em;
+}
+
+.input-group input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.input-group input::placeholder {
+    color: #aab;
+}
+
+.input-group .unit {
+    margin-left: 10px;
+    font-weight: 500;
+    color: #777;
+    font-size: 1em;
+}
+
+/* Calculate Button Styling */
+.calculate-button {
+    background-color: #6a0572; /* Deep purple */
+    color: white;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.calculate-button:hover {
+    background-color: #8e24aa; /* Lighter purple on hover */
+    transform: translateY(-2px);
+}
+
+.calculate-button:active {
+    background-color: #5b0360;
+    transform: translateY(0);
+}
+
+/* BMI Value Display */
+.bmi-value {
+    font-size: 1.4em;
+    margin-top: 25px;
+    color: #555;
+    font-weight: 500;
+}
+
+.bmi-value span {
+    font-weight: 700;
+    color: #4a90e2; /* Blue color for BMI value */
+    font-size: 1.1em;
+}
+
+/* BMI Result Section */
+.bmi-result {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.bmi-image {
+    width: 150px; /* Adjusted image size */
+    height: 150px;
+    object-fit: contain; /* Ensure image fits well */
+    margin-bottom: 15px;
+    border-radius: 50%; /* Make images circular if desired, or remove for default */
+    border: 3px solid #ddd;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-status-text {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #6a0572; /* Deep purple for status text */
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.bmi-status-placeholder {
+    font-size: 1.1em;
+    color: #777;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .bmi-container {
+        padding: 20px 25px;
+        margin: 20px;
+    }
+
+    .app-title {
+        font-size: 1.8em;
+    }
+
+    .input-group label {
+        flex-basis: 70px;
+        font-size: 1em;
+    }
+
+    .input-group input {
+        font-size: 1em;
+    }
+
+    .calculate-button {
+        font-size: 1.1em;
+        padding: 12px 20px;
+    }
+
+    .bmi-value {
+        font-size: 1.2em;
+    }
+
+    .bmi-status-text {
+        font-size: 1.5em;
+    }
+}

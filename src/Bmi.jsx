@@ -1,26 +1,32 @@
 import { useRef, useState } from "react";
+import './bmi.css'; // Make sure to create Bmi.css in the same directory
 
 function BmiText({ bmi }) {
-    if (bmi < 18.5) {
-        return (
-            <div style={{ textAlign: "center" }}>
-                <img src="under.png" height="200" alt="Underweight" />
-                <h2 style={{ color: "#3498db" }}>Underweight</h2>
-            </div>
-        );
+    let imageSrc = "";
+    let statusText = "";
+
+    if (bmi < 18.5 && bmi !== 0) { // Added bmi !== 0 to prevent displaying before calculation
+        imageSrc = "under.png";
+        statusText = "Underweight";
+    } else if (bmi >= 18.5 && bmi <= 24.9 && bmi !== 0) {
+        imageSrc = "Normal.jpg";
+        statusText = "Normal";
+    } else if (bmi >= 25 && bmi <= 29.9 && bmi !== 0) {
+        imageSrc = "over.png"; // Assuming you have an 'over.png' for overweight
+        statusText = "Overweight";
+    } else if (bmi >= 30 && bmi !== 0) {
+        imageSrc = "fat.webp";
+        statusText = "Obese"; // Changed from Overweight to Obese for BMI > 30
     }
-    if (bmi > 30) {
-        return (
-            <div style={{ textAlign: "center" }}>
-                <img src="fat.webp" height="200" alt="Overweight" />
-                <h2 style={{ color: "#e74c3c" }}>Overweight</h2>
-            </div>
-        );
+
+    if (bmi === 0) {
+        return <p className="bmi-status-placeholder">Enter your details to calculate BMI.</p>;
     }
+
     return (
-        <div style={{ textAlign: "center" }}>
-            <img src="Normal.jpg" height="200" alt="Normal" />
-            <h2 style={{ color: "#2ecc71" }}>Normal</h2>
+        <div className="bmi-result">
+            {imageSrc && <img src={imageSrc} alt={statusText} className="bmi-image" />}
+            <h2 className="bmi-status-text">{statusText}</h2>
         </div>
     );
 }
@@ -33,7 +39,9 @@ export default function Bmi() {
     function calBmi() {
         let w = parseFloat(w_inputRef.current.value);
         let h = parseFloat(h_inputRef.current.value) / 100;
-        if (!w || !h || h <= 0) {
+
+        if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) {
+            alert("Please enter valid positive numbers for weight and height.");
             setBmi(0.0);
             return;
         }
@@ -41,78 +49,20 @@ export default function Bmi() {
     }
 
     return (
-        <div style={{
-            maxWidth: "400px",
-            margin: "40px auto",
-            padding: "24px",
-            borderRadius: "16px",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
-            background: "#fff",
-            fontFamily: "Segoe UI, Arial, sans-serif"
-        }}>
-            <h1 style={{ textAlign: "center", color: "#34495e" }}>BMI Calculator</h1>
-            <div style={{ marginBottom: "16px" }}>
-                <label>
-                    Weight:
-                    <input
-                        ref={w_inputRef}
-                        type="number"
-                        min="1"
-                        step="any"
-                        placeholder="kg"
-                        style={{
-                            marginLeft: "8px",
-                            padding: "6px",
-                            borderRadius: "6px",
-                            border: "1px solid #ccc",
-                            width: "100px"
-                        }}
-                    />
-                </label>
+        <div className="bmi-container">
+            <h1 className="app-title">BMI Calculator</h1>
+            <div className="input-group">
+                <label htmlFor="weight">Weight:</label>
+                <input id="weight" ref={w_inputRef} type="number" placeholder="Enter weight" />
+                <span className="unit">kg</span>
             </div>
-            <div style={{ marginBottom: "16px" }}>
-                <label>
-                    Height:
-                    <input
-                        ref={h_inputRef}
-                        type="number"
-                        min="1"
-                        step="any"
-                        placeholder="cm"
-                        style={{
-                            marginLeft: "8px",
-                            padding: "6px",
-                            borderRadius: "6px",
-                            border: "1px solid #ccc",
-                            width: "100px"
-                        }}
-                    />
-                </label>
+            <div className="input-group">
+                <label htmlFor="height">Height:</label>
+                <input id="height" ref={h_inputRef} type="number" placeholder="Enter height" />
+                <span className="unit">cm</span>
             </div>
-            <button
-                onClick={calBmi}
-                style={{
-                    width: "100%",
-                    padding: "10px",
-                    background: "#2980b9",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "8px",
-                    fontSize: "16px",
-                    cursor: "pointer",
-                    marginBottom: "16px"
-                }}
-            >
-                Calculate
-            </button>
-            <p style={{
-                textAlign: "center",
-                fontSize: "18px",
-                color: "#555",
-                marginBottom: "16px"
-            }}>
-                BMI value: <span style={{ fontWeight: "bold" }}>{bmi.toFixed(2)}</span>
-            </p>
+            <button onClick={calBmi} className="calculate-button">Calculate BMI</button>
+            <p className="bmi-value">BMI Value: <span>{bmi.toFixed(2)}</span></p>
             <BmiText bmi={bmi} />
         </div>
     );
