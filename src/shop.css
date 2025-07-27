@@ -1,0 +1,542 @@
+/* Dark Theme Book Store CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    color: #e0e6ed;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(90deg, #16213e 0%, #3d5a80 100%);
+    backdrop-filter: blur(12px);
+    padding: 32px 0 16px 0;
+    text-align: center;
+    border-bottom: 2px solid #98d8c8;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    color: #ffd23f;
+    text-shadow: 0 2px 24px rgba(255, 210, 63, 0.3), 0 0 8px #3d5a80;
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+header p {
+    color: #b8c5d1;
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    font-style: italic;
+    text-shadow: 0 1px 8px rgba(152, 216, 200, 0.2);
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    margin-bottom: 8px;
+}
+
+nav a {
+    color: #ffd23f;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: rgba(152, 216, 200, 0.12);
+    transition: all 0.25s cubic-bezier(.4,2,.3,1);
+    border: 1px solid #ffd23f;
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 12px rgba(152, 216, 200, 0.08);
+}
+
+nav a:hover {
+    background: linear-gradient(90deg, #ffd23f 0%, #98d8c8 100%);
+    color: #16213e;
+    border-color: #3d5a80;
+    transform: translateY(-3px) scale(1.07);
+    box-shadow: 0 8px 24px rgba(152, 216, 200, 0.18);
+}
+
+/* Header Cart Icon */
+.header-cart {
+    position: fixed;
+    top: 32px;
+    right: 48px;
+    background: rgba(152, 216, 200, 0.18);
+    border: 2px solid #ffd23f;
+    border-radius: 50px;
+    padding: 14px 24px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(.4,2,.3,1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffd23f;
+    font-weight: bold;
+    box-shadow: 0 4px 24px rgba(255, 210, 63, 0.13);
+    z-index: 2100;
+}
+
+.header-cart:hover {
+    background: linear-gradient(90deg, #ffd23f 0%, #98d8c8 100%);
+    color: #16213e;
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px rgba(255, 210, 63, 0.22);
+}
+
+.cart-icon {
+    font-size: 1.7rem;
+}
+
+.cart-count {
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    min-width: 28px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.18);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Cart Dropdown */
+.cart-dropdown {
+    position: fixed;
+    right: 48px;
+    top: 80px;
+    z-index: 2000;
+    background: rgba(26, 26, 46, 0.97);
+    border: 2px solid #ffd23f;
+    border-radius: 18px;
+    padding: 22px;
+    min-width: 360px;
+    max-height: 420px;
+    overflow-y: auto;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.header-cart:hover .cart-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-icon {
+    font-size: 1.5rem;
+}
+
+.cart-count {
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    min-width: 25px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ✅ Cart Dropdown: เปลี่ยนเป็น relative เพื่อไม่ให้ทับสินค้า */
+.cart-dropdown {
+    position: relative;
+    margin-top: 20px;
+    background: rgba(26, 26, 46, 0.95);
+    border: 2px solid #3d5a80;
+    border-radius: 15px;
+    padding: 20px;
+    min-width: 350px;
+    max-height: 400px;
+    overflow-y: auto;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* ✅ Hover แล้ว dropdown จะดัน content ลงมา */
+.header-cart:hover .cart-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #3d5a80;
+    color: #e0e6ed;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-title {
+    flex: 1;
+    font-size: 0.9rem;
+    margin-right: 10px;
+}
+
+.dropdown-price {
+    color: #ffd23f;
+    font-weight: bold;
+}
+
+.dropdown-total {
+    text-align: center;
+    padding: 15px 0;
+    border-top: 2px solid #98d8c8;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #98d8c8;
+}
+
+.dropdown-clear {
+    width: 100%;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.dropdown-clear:hover {
+    background: #c0392b;
+}
+
+/* Main Container */
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Search Box */
+.searchbox {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.searchbox input {
+    background: rgba(26, 26, 46, 0.8);
+    border: 2px solid #3d5a80;
+    border-radius: 30px;
+    padding: 15px 25px;
+    color: #e0e6ed;
+    font-size: 1.1rem;
+    width: 400px;
+    max-width: 100%;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.searchbox input:focus {
+    border-color: #98d8c8;
+    box-shadow: 0 0 20px rgba(152, 216, 200, 0.3);
+}
+
+.searchbox input::placeholder {
+    color: #6c7b7f;
+}
+
+/* Book Container */
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Book Item */
+.book-Item {
+    background: rgba(26, 26, 46, 0.7);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #3d5a80;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.book-Item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: #98d8c8;
+    background: rgba(26, 26, 46, 0.9);
+}
+
+.book-thumbnail {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.book-Item:hover .book-thumbnail {
+    transform: scale(1.05);
+}
+
+.book-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #98d8c8;
+    margin-bottom: 8px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.book_author {
+    color: #b8c5d1;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.book-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffd23f;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 210, 63, 0.3);
+}
+
+.add-cart-bth {
+    background: linear-gradient(45deg, #98d8c8, #3d5a80);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.add-cart-bth:hover {
+    background: linear-gradient(45deg, #3d5a80, #98d8c8);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(152, 216, 200, 0.3);
+}
+
+/* Cart Styles */
+.cart-title {
+    font-size: 1.5rem;
+    color: #98d8c8;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cart-container {
+    background: rgba(26, 26, 46, 0.8);
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #3d5a80;
+    backdrop-filter: blur(10px);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.cart-container ol {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    background: rgba(15, 15, 35, 0.6);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #98d8c8;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    background: rgba(15, 15, 35, 0.8);
+    transform: translateX(5px);
+}
+
+.book-title-cart {
+    font-size: 0.9rem;
+    color: #e0e6ed;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.book-price-cart {
+    color: #ffd23f;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.Cart-total {
+    background: linear-gradient(45deg, #98d8c8, #3d5a80);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cart-container button {
+    width: 100%;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.cart-container button:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .header-cart {
+        right: 20px;
+    }
+    
+    .cart-dropdown {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .searchbox input {
+        width: 300px;
+    }
+    
+    .book-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .header-cart {
+        right: 15px;
+        top: 15px;
+        padding: 8px 15px;
+    }
+    
+    .cart-dropdown {
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 20px 10px;
+    }
+    
+    .searchbox input {
+        width: 100%;
+    }
+    
+    .book-container {
+        grid-template-columns: 1fr;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .header-cart {
+        right: 10px;
+        top: 10px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .cart-dropdown {
+        min-width: 250px;
+    }
+}
+.cart-dropdown {
+    position: fixed;
+    right: 40px; /* ตำแหน่งขวาเหมือน header-cart */
+    top: 70px;   /* ปรับให้ต่ำกว่าหัวเว็บ */
+    z-index: 2000;
+    background: rgba(26, 26, 46, 0.95);
+    border: 2px solid #3d5a80;
+    border-radius: 15px;
+    padding: 20px;
+    min-width: 350px;
+    max-height: 400px;
+    overflow-y: auto;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}   

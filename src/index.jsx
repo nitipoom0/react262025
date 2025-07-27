@@ -4,12 +4,14 @@ import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
 //import Counter from './Counter';
-import Bmi from './Bmi';
+///import Bmi from './Bmi';
+import Shop from './shop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Bmi />
+    {/*<Bmi />*/}
+    <Shop />
   </React.StrictMode>
 );
 
